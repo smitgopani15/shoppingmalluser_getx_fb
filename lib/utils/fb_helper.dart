@@ -74,5 +74,21 @@ class FbHelper {
 
   Future<void> signOut() async {
     await firebaseAuth.signOut();
+    await GoogleSignIn().signOut();
+  }
+
+  Future<String?> resetPassword({
+    email,
+  }) async {
+    String? msg;
+    await firebaseAuth
+        .sendPasswordResetEmail(email: email)
+        .then(
+          (value) => msg = "password successfully change !",
+        )
+        .catchError(
+          (e) => msg = "password reset failed !",
+        );
+    return msg;
   }
 }
