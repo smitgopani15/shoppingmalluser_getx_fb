@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -10,12 +11,14 @@ class FbHelper {
 
   GoogleSignInAuthentication? googleSignInAuthentication;
 
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   Future<String?> signUp({
     required email,
     required password,
   }) async {
     String? msg;
-    var credential = await firebaseAuth
+    await firebaseAuth
         .createUserWithEmailAndPassword(
           email: email,
           password: password,
@@ -34,7 +37,7 @@ class FbHelper {
     required password,
   }) async {
     String? msg;
-    var credential = await firebaseAuth
+    await firebaseAuth
         .signInWithEmailAndPassword(
           email: email,
           password: password,
@@ -90,5 +93,37 @@ class FbHelper {
           (e) => msg = "password reset failed !",
         );
     return msg;
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readItem() {
+    User? user = firebaseAuth.currentUser;
+    var uid = user!.uid;
+    return firebaseFirestore
+        .collection("admin")
+        .doc(uid)
+        .collection("item")
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readCategoryData(
+    String category,
+  ) {
+    User? user = firebaseAuth.currentUser;
+    var uid = user!.uid;
+    return firebaseFirestore
+        .collection("admin")
+        .doc(uid)
+        .collection("item")
+        .where("category", whereIn: [category]).snapshots();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readNameData(String name) {
+    User? user = firebaseAuth.currentUser;
+    var uid = user!.uid;
+    return firebaseFirestore
+        .collection("admin")
+        .doc(uid)
+        .collection("item")
+        .where("name", whereIn: [name]).snapshots();
   }
 }
