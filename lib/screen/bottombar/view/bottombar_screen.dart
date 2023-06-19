@@ -34,12 +34,12 @@ class _BottombarScreenState extends State<BottombarScreen> {
           hideNavigationBarWhenKeyboardShows: true,
           popAllScreensOnTapOfSelectedTab: true,
           decoration: const NavBarDecoration(
-            boxShadow: [
-              BoxShadow(
+            border: Border(
+              top: BorderSide(
                 color: Colors.teal,
-                spreadRadius: 3,
-              )
-            ],
+                width: 5,
+              ),
+            ),
           ),
           popActionScreens: PopActionScreensType.all,
           itemAnimationProperties: const ItemAnimationProperties(

@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: const Icon(
                           Icons.logout,
                           color: Colors.teal,
-                          size: 25,
+                          size: 28,
                         ),
                       ),
                     ),
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.only(
                         top: 10,
                         bottom: 10,
-                        left: 30,
+                        left: 25,
                         right: 20,
                       ),
                       child: Row(
@@ -135,9 +135,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: double.infinity,
                               width: double.infinity,
                               alignment: Alignment.center,
-                              child: Image.asset(
-                                "assets/images/6.png",
-                                fit: BoxFit.contain,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Image.asset(
+                                  "assets/images/6.png",
+                                ),
                               ),
                             ),
                           ),
@@ -216,8 +218,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const Spacer(),
                       InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () {
-                          Get.toNamed('search_screen');
+                          Get.toNamed('seeallsearch_screen');
                         },
                         child: Text(
                           "See all",
@@ -245,11 +249,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               InkWell(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 onTap: () {
-                                  homeController.category.value = "Mobiles";
-                                  FbHelper.fbHelper.readCategoryData(
-                                      homeController.category.value);
-                                  Get.toNamed('categorydata_screen');
+                                  Get.toNamed(
+                                    'categorydata_screen',
+                                    arguments: "Mobiles",
+                                  );
                                 },
                                 child: Container(
                                   height: 70,
@@ -287,11 +293,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               InkWell(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 onTap: () {
-                                  homeController.category.value = "TVs";
-                                  FbHelper.fbHelper.readCategoryData(
-                                      homeController.category.value);
-                                  Get.toNamed('categorydata_screen');
+                                  Get.toNamed(
+                                    'categorydata_screen',
+                                    arguments: "TVs",
+                                  );
                                 },
                                 child: Container(
                                   height: 70,
@@ -329,11 +337,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               InkWell(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 onTap: () {
-                                  homeController.category.value = "Wearables";
-                                  FbHelper.fbHelper.readCategoryData(
-                                      homeController.category.value);
-                                  Get.toNamed('categorydata_screen');
+                                  Get.toNamed(
+                                    'categorydata_screen',
+                                    arguments: "Wearables",
+                                  );
                                 },
                                 child: Container(
                                   height: 70,
@@ -371,11 +381,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               InkWell(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 onTap: () {
-                                  homeController.category.value = "Laptops";
-                                  FbHelper.fbHelper.readCategoryData(
-                                      homeController.category.value);
-                                  Get.toNamed('categorydata_screen');
+                                  Get.toNamed(
+                                    'categorydata_screen',
+                                    arguments: "Laptops",
+                                  );
                                 },
                                 child: Container(
                                   height: 70,
@@ -425,8 +437,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const Spacer(),
                       InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () {
-                          Get.toNamed('search_screen');
+                          Get.toNamed('seeallsearch_screen');
                         },
                         child: Text(
                           "See all",
@@ -488,102 +502,369 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         itemCount: dataList.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.teal.shade100,
-                            ),
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Container(
-                                    height: 40,
-                                    width: 65,
-                                    decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(10),
-                                        topLeft: Radius.circular(10),
-                                      ),
-                                      color: Colors.red,
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "${dataList[index].offer} %",
-                                      style: GoogleFonts.secularOne(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                      ),
-                                    ),
+                          return InkWell(
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () {
+                              var name = dataList[index].name;
+                              var description = dataList[index].description;
+                              var category = dataList[index].category;
+                              var price = dataList[index].price;
+                              var offer = dataList[index].offer;
+                              var image = dataList[index].image;
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: const Color(0xfffef2fe),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(40),
+                                    topRight: Radius.circular(40),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 10,
-                                    bottom: 10,
-                                    left: 20,
-                                    right: 20,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: SizedBox(
-                                          height: double.infinity,
-                                          width: double.infinity,
-                                          child: dataList[index].image == null
-                                              ? Image.asset(
-                                                  "assets/images/2.png",
-                                                  height: 100,
-                                                  width: 100,
-                                                )
-                                              : Image.memory(
-                                                  base64Decode(
-                                                    dataList[index]
-                                                        .image
-                                                        .toString(),
+                                builder: (context) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 30,
+                                      right: 30,
+                                      top: 30,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Center(
+                                          child: Text(
+                                            "Item Details",
+                                            style: GoogleFonts.secularOne(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                              color: Colors.teal,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Center(
+                                          child: SizedBox(
+                                            height: 200,
+                                            width: 200,
+                                            child: image == null
+                                                ? Image.asset(
+                                                    "assets/images/2.png",
+                                                  )
+                                                : Image.memory(
+                                                    base64Decode(
+                                                      image.toString(),
+                                                    ),
                                                   ),
-                                                  height: 100,
-                                                  width: 100,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          "$name",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 30,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        Text(
+                                          "$category",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 18,
+                                            color: Colors.black54,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Descriptions",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                        Text(
+                                          "$description",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                            color: Colors.black45,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Offers",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                        Text(
+                                          "$offer %",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                            color: Colors.black45,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Reviews & Ratings",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                              size: 22,
+                                            ),
+                                            const Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                              size: 22,
+                                            ),
+                                            const Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                              size: 22,
+                                            ),
+                                            const Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                              size: 22,
+                                            ),
+                                            const Icon(
+                                              Icons.star_half,
+                                              color: Colors.amber,
+                                              size: 22,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 5,
+                                                top: 2.5,
+                                              ),
+                                              child: Text(
+                                                "4.5 (318 Reviews)",
+                                                style: GoogleFonts.secularOne(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 15,
+                                                  color: Colors.black45,
                                                 ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "${dataList[index].name}",
-                                        style: GoogleFonts.secularOne(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          color: Colors.black,
+                                        const SizedBox(
+                                          height: 20,
                                         ),
+                                        Container(
+                                          height: 80,
+                                          width: double.infinity,
+                                          decoration: const BoxDecoration(
+                                            border: Border(
+                                              top: BorderSide(
+                                                color: Colors.black12,
+                                                width: 1,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "Total Price",
+                                                    style:
+                                                        GoogleFonts.secularOne(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 15,
+                                                      color: Colors.black45,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "₹ $price",
+                                                    style:
+                                                        GoogleFonts.secularOne(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 25,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                width: 30,
+                                              ),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    vertical: 10,
+                                                  ),
+                                                  child: Container(
+                                                    height: double.infinity,
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                        10,
+                                                      ),
+                                                      color: Colors.teal,
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      "Add to cart",
+                                                      style: GoogleFonts
+                                                          .secularOne(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.teal.shade100,
+                              ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Container(
+                                      height: 40,
+                                      width: 65,
+                                      decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          bottomRight: Radius.circular(10),
+                                          topLeft: Radius.circular(10),
+                                        ),
+                                        color: Colors.red,
                                       ),
-                                      Text(
-                                        "${dataList[index].category}",
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "${dataList[index].offer} %",
                                         style: GoogleFonts.secularOne(
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Colors.black45,
+                                          fontSize: 18,
+                                          color: Colors.white,
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "₹ ${dataList[index].price}",
-                                        style: GoogleFonts.secularOne(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 10,
+                                      bottom: 10,
+                                      left: 20,
+                                      right: 20,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: SizedBox(
+                                            height: double.infinity,
+                                            width: double.infinity,
+                                            child: dataList[index].image == null
+                                                ? Image.asset(
+                                                    "assets/images/2.png",
+                                                    height: 100,
+                                                    width: 100,
+                                                  )
+                                                : Image.memory(
+                                                    base64Decode(
+                                                      dataList[index]
+                                                          .image
+                                                          .toString(),
+                                                    ),
+                                                    height: 100,
+                                                    width: 100,
+                                                  ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "${dataList[index].name}",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        Text(
+                                          "${dataList[index].category}",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 14,
+                                            color: Colors.black45,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          "₹ ${dataList[index].price}",
+                                          style: GoogleFonts.secularOne(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },

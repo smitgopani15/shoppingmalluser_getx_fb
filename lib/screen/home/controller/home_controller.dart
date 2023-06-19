@@ -5,7 +5,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled_getx_fb/screen/cart/view/cart_screen.dart';
 import 'package:untitled_getx_fb/screen/home/view/home_screen.dart';
 import 'package:untitled_getx_fb/screen/profile/view/profile_screen.dart';
-import 'package:untitled_getx_fb/screen/search/view/search_screen.dart';
+import '../../bottombarsearch/view/bottombarsearch_screen.dart';
 
 class HomeController extends GetxController {
   RxBool signinEye = true.obs;
@@ -18,7 +18,7 @@ class HomeController extends GetxController {
   List<Widget> screen() {
     return [
       const HomeScreen(),
-      const SearchScreen(),
+      const BottombarsearchScreen(),
       const CartScreen(),
       const ProfileScreen(),
     ];
@@ -72,7 +72,4 @@ class HomeController extends GetxController {
       ),
     ];
   }
-
-  RxString search = "".obs;
-  RxString category = "".obs;
 }
