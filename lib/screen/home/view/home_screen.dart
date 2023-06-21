@@ -69,6 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     onTap: () {
                       FbHelper.fbHelper.signOut();
                       final snackBar = SnackBar(
@@ -254,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: () {
                                   Get.toNamed(
                                     'categorydata_screen',
-                                    arguments: "Mobiles",
+                                    arguments: "mobile",
                                   );
                                 },
                                 child: Container(
@@ -298,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: () {
                                   Get.toNamed(
                                     'categorydata_screen',
-                                    arguments: "TVs",
+                                    arguments: "tv",
                                   );
                                 },
                                 child: Container(
@@ -342,7 +344,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: () {
                                   Get.toNamed(
                                     'categorydata_screen',
-                                    arguments: "Wearables",
+                                    arguments: "watch",
                                   );
                                 },
                                 child: Container(
@@ -386,7 +388,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: () {
                                   Get.toNamed(
                                     'categorydata_screen',
-                                    arguments: "Laptops",
+                                    arguments: "laptop",
                                   );
                                 },
                                 child: Container(
@@ -512,6 +514,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               var price = dataList[index].price;
                               var offer = dataList[index].offer;
                               var image = dataList[index].image;
+                              var id = dataList[index].id;
                               showModalBottomSheet(
                                 context: context,
                                 isScrollControlled: true,
@@ -735,25 +738,48 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .symmetric(
                                                     vertical: 10,
                                                   ),
-                                                  child: Container(
-                                                    height: double.infinity,
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                        10,
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () {
+                                                      FbHelper.fbHelper
+                                                          .updateCartItem(
+                                                        name: name,
+                                                        price: price,
+                                                        category: category,
+                                                        offer: offer,
+                                                        description:
+                                                            description,
+                                                        image: image,
+                                                        id: id,
+                                                        cart: true,
+                                                      );
+                                                      // snackbar
+                                                    },
+                                                    child: Container(
+                                                      height: double.infinity,
+                                                      width: double.infinity,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          10,
+                                                        ),
+                                                        color: Colors.teal,
                                                       ),
-                                                      color: Colors.teal,
-                                                    ),
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      "Add to cart",
-                                                      style: GoogleFonts
-                                                          .secularOne(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 18,
-                                                        color: Colors.white,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        "Add to cart",
+                                                        style: GoogleFonts
+                                                            .secularOne(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                          color: Colors.white,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

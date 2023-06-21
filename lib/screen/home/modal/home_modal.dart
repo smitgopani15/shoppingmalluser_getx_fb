@@ -39,3 +39,19 @@ class SearchModal {
     this.image,
   });
 }
+
+class CartModal {
+  String? name, price, description, offer, category, id, image;
+  bool? cart;
+
+  CartModal({
+    this.name,
+    this.price,
+    this.description,
+    this.offer,
+    this.category,
+    this.id,
+    this.image,
+    this.cart,
+  });
+}

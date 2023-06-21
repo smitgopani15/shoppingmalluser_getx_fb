@@ -428,6 +428,11 @@ class _SignupScreenState extends State<SignupScreen> {
                                     email: emailc.text,
                                     password: passwordc.text,
                                   );
+                                  FbHelper.fbHelper.insertUserDetail(
+                                    email: emailc.text,
+                                    fname: fnamec.text,
+                                    lname: lnamec.text,
+                                  );
                                   if (msg == "account successfully created !") {
                                     final snackBar = SnackBar(
                                       elevation: 0,

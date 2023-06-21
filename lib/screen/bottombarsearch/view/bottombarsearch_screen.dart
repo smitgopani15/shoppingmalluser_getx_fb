@@ -34,6 +34,19 @@ class _BottombarsearchScreenState extends State<BottombarsearchScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Center(
+                child: Text(
+                  "Search Here",
+                  style: GoogleFonts.secularOne(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: Colors.teal,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 children: [
                   Expanded(
@@ -109,7 +122,7 @@ class _BottombarsearchScreenState extends State<BottombarsearchScreen> {
                             onTap: () {
                               Get.toNamed(
                                 'categorydata_screen',
-                                arguments: "Mobiles",
+                                arguments: "mobile",
                               );
                             },
                             child: Container(
@@ -153,7 +166,7 @@ class _BottombarsearchScreenState extends State<BottombarsearchScreen> {
                             onTap: () {
                               Get.toNamed(
                                 'categorydata_screen',
-                                arguments: "TVs",
+                                arguments: "tv",
                               );
                             },
                             child: Container(
@@ -197,7 +210,7 @@ class _BottombarsearchScreenState extends State<BottombarsearchScreen> {
                             onTap: () {
                               Get.toNamed(
                                 'categorydata_screen',
-                                arguments: "Wearables",
+                                arguments: "watch",
                               );
                             },
                             child: Container(
@@ -241,7 +254,7 @@ class _BottombarsearchScreenState extends State<BottombarsearchScreen> {
                             onTap: () {
                               Get.toNamed(
                                 'categorydata_screen',
-                                arguments: "Laptops",
+                                arguments: "laptop",
                               );
                             },
                             child: Container(
@@ -289,7 +302,16 @@ class _BottombarsearchScreenState extends State<BottombarsearchScreen> {
                         color: Colors.black,
                       ),
                     )
-                  : Container(),
+                  : Center(
+                      child: Text(
+                        "No search found !",
+                        style: GoogleFonts.secularOne(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ),
               const SizedBox(
                 height: 10,
               ),

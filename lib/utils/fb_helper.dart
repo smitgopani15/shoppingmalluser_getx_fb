@@ -32,6 +32,24 @@ class FbHelper {
     return msg;
   }
 
+  Future<void> insertUserDetail({
+    fname,
+    lname,
+    email,
+  }) async {
+    User? user = firebaseAuth.currentUser;
+    String uid = user!.uid;
+    await firebaseFirestore
+        .collection("user")
+        .doc(uid)
+        .collection("detail")
+        .add({
+      "fname": fname,
+      "lname": lname,
+      "email": email,
+    });
+  }
+
   Future<String?> signIn({
     required email,
     required password,
@@ -125,5 +143,44 @@ class FbHelper {
         .doc(uid)
         .collection("item")
         .where("name", whereIn: [name]).snapshots();
+  }
+
+  Future<void> updateCartItem({
+    name,
+    price,
+    description,
+    offer,
+    category,
+    id,
+    image,
+    cart,
+  }) async {
+    User? user = firebaseAuth.currentUser;
+    String uid = user!.uid;
+    await firebaseFirestore
+        .collection("admin")
+        .doc(uid)
+        .collection("item")
+        .doc(id)
+        .update({
+      "name": name,
+      "price": price,
+      "description": description,
+      "offer": offer,
+      "category": category,
+      "image": image,
+      "cart": cart,
+    });
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readCartItem() {
+    User? user = firebaseAuth.currentUser;
+    var uid = user!.uid;
+    return firebaseFirestore
+        .collection("admin")
+        .doc(uid)
+        .collection("item")
+        .where("cart", isEqualTo: true)
+        .snapshots();
   }
 }

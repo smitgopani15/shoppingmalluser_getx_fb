@@ -103,14 +103,14 @@ Future<void> main() async {
 
 // remove user modal
 
+// logout icon size
+
 // inkwell  splashColor: Colors.transparent,
 //                         highlightColor: Colors.transparent,
 
 // user ====================================================================
 
-// cart
 // buy 1
 // buy 2
-// profile
 // inkwell  splashColor: Colors.transparent,
-//                         highlightColor: Colors.transparent,
+//          highlightColor: Colors.transparent,

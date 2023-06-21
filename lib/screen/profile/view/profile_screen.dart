@@ -14,37 +14,62 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xfffef2fe),
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Center(
-                child: Text(
-                  "Profile",
-                  style: GoogleFonts.secularOne(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.teal,
+        body: Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.teal.shade100,
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.teal,
+                      size: 50,
+                    ),
+                    radius: 50,
                   ),
-                ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Smit Gopani",
+                    style: GoogleFonts.secularOne(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                    "admin@gmail.com",
+                    style: GoogleFonts.secularOne(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 50,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Center(
+                    child: Text(
+                      "My Profile",
+                      style: GoogleFonts.secularOne(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              CircleAvatar(
-                backgroundColor: Colors.teal.shade100,
-                child: Icon(
-                  Icons.person,
-                  color: Colors.teal,
-                  size: 60,
-                ),
-                radius: 60,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
